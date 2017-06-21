@@ -1,3 +1,8 @@
+/**
+ *使用express构建一个简单的服务器，使用superagent爬cnodejs网站首页，使用cheerio解析html
+ **/
+
+
 var express = require("express");
 var utility = require("utility");
 var superagent = require("superagent");

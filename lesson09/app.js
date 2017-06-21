@@ -1,3 +1,7 @@
+/**
+ *学习Promise的用法
+ **/
+
 var Q = require("q");
 var defer = Q.defer();
 

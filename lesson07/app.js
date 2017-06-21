@@ -1,3 +1,7 @@
+/**
+ *闭包的测试用例
+ **/
+
 function buildList(list) {
     var result = [];
     for (var i = 0; i < list.length; i++) {
@@ -22,7 +26,7 @@ testList();
 var myObj = { value: 100 };
 myObj.getValue = function() {
     var foo = function() {
-        console.log("foo.this=" + this);
+        console.log("foo.this=" + this); // global
     }
 
     foo();

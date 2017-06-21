@@ -1,3 +1,7 @@
+/**
+ *学习使用测试框架istanbul mocha
+ **/
+
 var fibonacci = function(n) {
     if (n === 0 || n === 1) {
         return n;

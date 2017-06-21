@@ -1,3 +1,8 @@
+/**
+ *学习使用async库，限制并发的任务数量
+ **/
+
+
 var async = require("async");
 
 
