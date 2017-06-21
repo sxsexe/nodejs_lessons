@@ -63,13 +63,16 @@ module.exports = function (dir) {
         console.log("dir should not be null");
         return;
     }
+
+
+
     console.log(dir);
     // travel_pre(path.normalize(dir));
-    
-    travel_pre_cb(dir, function(pathname, ccb) {
-        console.log(pathname);
-    }, function(){
-        console.log("finish");
-    });
+
+    // travel_pre_cb(dir, function(pathname, ccb) {
+    //     console.log(pathname);
+    // }, function(){
+    //     console.log("finish");
+    // });
 }
 

@@ -22,7 +22,30 @@ function copy_cb(src, dest) {
                 });
 
             } else {
-                console.log(dest + " existed");
+                console.log(dest + " existed, Y/y : Overwrite, N/n : Abort");
+
+                //使用Readline和用户交互，等待用户输入确认是否需要Overwrite
+                var readline = require('readline');
+                var rl = readline.createInterface({
+                    input: process.stdin,
+                    output: process.stdout,
+                    terminal: false
+                });
+
+                rl.on('line', function (cmd) {
+                    if(cmd === 'Y' || cmd === 'y') {
+                        fs.writeFile(dest, fs.readFileSync(src), (err) => { // 同步读，异步写
+                            if(err) {
+                                console.log(" writeFile err", err);
+                            } else {
+                                console.log(" writeFileSync Success");
+                            }
+                        });
+                    } else {
+                        console.log('Copy Aborted');
+                    }
+                    rl.close();
+                });
             }
         });
     });
@@ -43,7 +66,9 @@ module.exports = function(src, dest) {
     }
     console.log("src=",src, ",dest=", dest);
 
-    // copy_cb(src, dest);
+    // 使用read write拷贝
+    copy_cb(src, dest);
 
-    copy_pipe(src, dest);
+    // 使用pipe方式拷贝
+    // copy_pipe(src, dest);
 }
