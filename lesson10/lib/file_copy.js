@@ -28,11 +28,22 @@ function copy_cb(src, dest) {
     });
 }
 
+// 大文件拷贝，不论同步还是异步,文件内容都会被load到内存中，文件很大的话内存会爆仓，可以使用stream+pipe的方式
+function copy_pipe(src, dest) {
+    fs.createReadStream(src).pipe(fs.createWriteStream(dest));
+    console.log("copy_pipe success");
+}
+
+
+
 module.exports = function(src, dest) {
     if (!src || !dest) {
         console.log("src and dest should not be null");
         return;
     }
+    console.log("src=",src, ",dest=", dest);
 
-    copy_cb(src, dest);
+    // copy_cb(src, dest);
+
+    copy_pipe(src, dest);
 }
