@@ -71,6 +71,78 @@ someAsynThing().then(result => {console.log("resolve result");})
 
 
 
+//reshape函数
+var reshapMatrix = function(nums, r, c) {
+    if(!nums) {
+        return nums;
+    }
+
+    var oR = nums.length;
+    var oC = nums[0].length;
+    console.log("oR = " + oR, " oC = " + oC);
+    if(oR * oC != r * c) {
+        return nums;
+    }
+
+    var newArray = new Array();
+    r = Math.ceil(oR * oC / c);
+    console.log("r = " + r, " c = " + c);
+    for(var i = 0; i < r; i++) {
+        newArray[i] = new Array();
+    }
+
+    // 方法一
+    // var indexR = 0, indexC = 0;
+    // var over = false;
+    // for(var k = 0; k < r; k++) {
+    //     if(over) {
+    //         break;
+    //     }
+    //     for(var j = 0; j < c; j++) {
+    //         newArray[k][j] = nums[indexR][indexC++];
+    //         if(indexC >= oC) {
+    //             indexC = 0;
+    //             indexR++;
+    //         }
+    //         if(indexR >= oR) {
+    //             over = true;
+    //             break;
+    //         }
+    //     }
+    // }
+
+    //方法二 简洁高效
+    // var newCount = 0;
+    // for(var k = 0; k < oR; k++) {
+    //     for(var j = 0; j < oC; j++) {
+    //         newArray[newCount / c][newCount % c] = nums[k][j];
+    //         newCount++;
+    //     }
+    // }
+
+    // 方法三 简洁高效
+    var sum = oR * oC;
+    for(var m = 0; m < sum; m++) {
+        console.log("m=" + m + ", oC = " + oC + ", (i / n)=" + (m / oC) + ", (i % n)=" + (m % oC));
+        newArray[Math.floor(m / c)][m % c] = nums[Math.floor(m / oC)][m % oC];
+    }
+
+
+    return newArray;
+}
+
+//reshape testcase
+var nums1 = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20],[21]];
+var r = 42;
+var c = 5;
+var outNums = reshapMatrix(nums1, r, c);
+console.log("r = " + r, ", c = " + c, ", outNums= " , outNums);
+
+nums1 = [[1, 2], [3, 4]];
+r = 4;
+c = 1;
+outNums = reshapMatrix(nums1, r, c);
+console.log("r = " + r, ", c = " + c, ", outNums= " , outNums);
 
 
 
